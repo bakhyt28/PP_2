@@ -2,8 +2,8 @@ import re   # module for working with text patterns (regular expressions)
 import json # module to create JSON formatted output
 
 # open the receipt file and read all text
-with open("raw.txt", "r", encoding="utf-8") as f:
-    text = f.read()  # store the whole receipt text in variable
+with open("practice5/raw.txt", "r", encoding="utf-8") as f:
+    text = f.read()
 
 
 # 1 Extract prices

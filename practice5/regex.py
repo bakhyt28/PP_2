@@ -42,7 +42,7 @@ print("#4:", matches4)
 
 #5 Match 'a' followed by anything ending with 'b'
 
-text5 = "acb a123b ab axxxb"
+text5 = "acb a123b ac axxxb"
 
 pattern5 = r"a.*b"  # starts with 'a' and ends with 'b'
 matches5 = re.findall(pattern5, text5)
