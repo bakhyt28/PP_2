@@ -3,34 +3,45 @@ from ball import Ball
 
 pygame.init()
 
-WIDTH, HEIGHT = 600, 400
+# Screen settings
+WIDTH, HEIGHT = 600, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Moving Ball")
+
+# Control FPS
 clock = pygame.time.Clock()
 
-ball = Ball()
+# Create ball object
+ball = Ball(WIDTH, HEIGHT)
 
 running = True
 while running:
+    # White background
     screen.fill((255, 255, 255))
 
+    # Handle system events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    keys = pygame.key.get_pressed()
+        # Move ball using arrow keys
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                ball.move(0, -ball.speed)
+            elif event.key == pygame.K_DOWN:
+                ball.move(0, ball.speed)
+            elif event.key == pygame.K_LEFT:
+                ball.move(-ball.speed, 0)
+            elif event.key == pygame.K_RIGHT:
+                ball.move(ball.speed, 0)
 
-    if keys[pygame.K_UP]:
-        ball.move(0, -ball.speed, WIDTH, HEIGHT)
-    if keys[pygame.K_DOWN]:
-        ball.move(0, ball.speed, WIDTH, HEIGHT)
-    if keys[pygame.K_LEFT]:
-        ball.move(-ball.speed, 0, WIDTH, HEIGHT)
-    if keys[pygame.K_RIGHT]:
-        ball.move(ball.speed, 0, WIDTH, HEIGHT)
+    # Draw ball on screen
+    ball.draw(screen)
 
-    pygame.draw.circle(screen, (255, 0, 0), (ball.x, ball.y), ball.radius)
-
+    # Update display
     pygame.display.flip()
+
+    # Limit FPS for smooth movement
     clock.tick(60)
 
 pygame.quit()
